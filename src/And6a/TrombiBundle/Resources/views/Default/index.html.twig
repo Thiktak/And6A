@@ -1,5 +1,6 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-Hello {{ name }}!
+  {% render "And6aTrombiBundle:Default:user" with { user: 1, withLink: true } %}
+  {% render "And6aTrombiBundle:Default:user" with { user: 1, withLink: false } %}
 {% endblock %}

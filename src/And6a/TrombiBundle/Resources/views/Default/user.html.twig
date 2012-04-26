@@ -1,0 +1,14 @@
+{%if withLink %}
+<a href="#user-{{user.id}}">
+{%endif%}
+  <figure class="user user-{{style|default('badge')}}">
+    <img src="{{user.avatar}}" />
+    <figcaption>
+      <span class="name">{{user.name}}</span>
+      <span class="fname">{{user.fname}}</span>
+      <span class="class">{{user.year}}a {{user.class.name|default('')}}</span>
+    </figcation>
+  </figure>
+{%if withLink %}
+</a>
+{%endif%}
