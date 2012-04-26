@@ -1,0 +1,7 @@
+parameters:
+#    and6a_trombi.example.class: And6a\TrombiBundle\Example
+
+services:
+#    and6a_trombi.example:
+#        class: %and6a_trombi.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
