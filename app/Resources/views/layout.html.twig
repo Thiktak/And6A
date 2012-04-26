@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+  <html>
+  <head>
+   <meta charset="UTF-8" />
+    <title>And6a {% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+  </head>
+  <body>
+    <div id="global">
+      <div id="header-container">
+        <header id="header" role="header" class="container">
+          <hgroup>
+            <h1>Trombi</h1>
+            <h2>Ensisa</h2>
+          </hgroup>
+        </header>
+
+        <nav id="nav" role="nav" class="container">
+          <ul>
+            <li><a href="#">item</a></li>
+            <li><a href="#">item</a></li>
+            <li><a href="#">item</a></li>
+            <li><a href="#">item</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div id="content-container">
+        <div id="main" class="container">
+          <section id="content">
+            {% block body %}{% endblock %}
+          </section>
+        </div>
+      </div>
+
+      <div id="footer-container">
+        <footer id="footer" class="container">
+          <p>&copy; 2012</p>
+        </footer>
+    </div>
+    </div>
+    <!-- Javascripts -->
+    {% block javascripts %}{% endblock %}
+  </body>
+</html>
