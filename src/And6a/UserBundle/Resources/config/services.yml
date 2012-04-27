@@ -1,0 +1,7 @@
+parameters:
+#    and6a_user.example.class: And6a\UserBundle\Example
+
+services:
+#    and6a_user.example:
+#        class: %and6a_user.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

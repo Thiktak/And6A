@@ -1,6 +1,7 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-  {% render "And6aTrombiBundle:Default:user" with { user: 1, withLink: true } %}
-  {% render "And6aTrombiBundle:Default:user" with { user: 1, withLink: false } %}
+	{%for i in 1..30%}
+  	{% render "And6aUserBundle:Default:getBadge" with { user: 1, withLink: false } %}
+  {%endfor%}
 {% endblock %}

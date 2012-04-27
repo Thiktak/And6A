@@ -63,6 +63,17 @@ p { font-size: 1em; }
 }
 
 
+#nav-user {
+	margin: 1em;
+	margin-right: auto;
+}
+#nav-user .user-badge {
+	color: darkgray;
+}
+#nav-user .user-badge:hover {
+	text-decoration: none;
+}
+
 
 .cell-IR a, a.cell-IR { background-color: Green     !important; }
 .cell-AS a, a.cell-AS { background-color: Orange    !important; }

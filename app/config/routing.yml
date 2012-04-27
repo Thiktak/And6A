@@ -1,10 +1,14 @@
-_welcome:
-    pattern:  /
-    defaults: { _controller: And6aTrombiBundle:Default:index }
+And6aUserBundle:
+    resource: "@And6aUserBundle/Resources/config/routing.yml"
+    prefix:   /
 
 And6aTrombiBundle:
     resource: "@And6aTrombiBundle/Resources/config/routing.yml"
     prefix:   /
+
+_welcome:
+    pattern:  /
+    defaults: { _controller: And6aTrombiBundle:Default:index }
 
 # Internal routing configuration to handle ESI
 #_internal:

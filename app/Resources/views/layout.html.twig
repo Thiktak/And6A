@@ -11,6 +11,23 @@
     <div id="global">
       <div id="header-container">
         <header id="header" role="header" class="container">
+
+          {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+          <ul id="nav-user" class="pull-right">
+            <li class="btn btn-inverse dropdown">
+              <a class="user-badge dropdown-toggle" data-toggle="dropdown" href="#">
+                {{ app.user.username }}
+                <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+
+                <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+                <li class="divider"></li>
+                <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
+              </ul>
+            </li>
+          </ul>
+          {% endif %}
           <hgroup>
             <h1>Trombi</h1>
             <h2>Ensisa</h2>
@@ -55,6 +72,22 @@
     </div>
     </div>
     <!-- Javascripts -->
-    {% block javascripts %}{% endblock %}
+    {% block javascripts %}
+      <script src="http://twitter.github.com/bootstrap/assets/js/jquery.js"></script>
+      <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-transition.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-alert.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>-->
+      <script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-dropdown.js"></script>
+      <!--script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-scrollspy.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tooltip.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-popover.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-button.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-collapse.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>-->
+      <!--<script src="http://twitter.github.com/bootstrap/assets/js/application.js"></script>-->-->
+    {% endblock %}
   </body>
 </html>
