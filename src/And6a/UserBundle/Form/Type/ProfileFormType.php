@@ -15,8 +15,12 @@ class ProfileFormType extends BaseType
         $builder
             ->add('name')
             ->add('fname')
-            ->add('birthday')
+            ->add('birthday', 'birthday', array(
+                'format' => 'dd-MM-yyyy'
+            ))
         ;
+
+        $builder->remove('email');
     }
 
     public function getName()

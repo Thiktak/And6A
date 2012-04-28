@@ -1,11 +1,12 @@
+{#
 
-{% block field_label %}
-{% spaceless %}
-    <label for="{{ id }}" class="control-label">{{ id|trans([], 'FOSUserBundle') }}</label>
-{% endspaceless %}
-{% endblock field_label %}
+    {% block field_label %}
+    {% spaceless %}
+        <label for="{{ id }}" class="control-label">{{ id|trans([], 'FOSUserBundle') }}</label>
+    {% endspaceless %}
+    {% endblock field_label %}
 
-{% block field_row %}
+    {% block field_row %}
     <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
         {{ form_label(form, label) }}
         <div class="input">
@@ -17,4 +18,5 @@
             {{ form_errors(form) }}
         </div>
     </div>
-{% endblock field_row %}
+    {% endblock field_row %}
+#}

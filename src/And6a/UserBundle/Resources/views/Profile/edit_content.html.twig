@@ -1,6 +1,6 @@
 {% form_theme form theme %}
 
-<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-vertical">
+<form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="form-horizontal">
     {{ form_widget(form) }}
     <div class="form-actions">
         <input type="submit" value="{{ 'profile.edit.submit'|trans({}, 'FOSUserBundle') }}"  class="btn btn-primary" />

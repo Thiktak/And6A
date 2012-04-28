@@ -21,6 +21,10 @@ twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
 
+    form:
+        resources:
+            - 'MopaBootstrapBundle:Form:fields.html.twig'
+
 # Assetic Configuration
 assetic:
     debug:          %kernel.debug%
@@ -63,7 +67,7 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: And6a\UserBundle\Entity\User
-    
+
     profile:
         form:
             type: and6a_user_profile
