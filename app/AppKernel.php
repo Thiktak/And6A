@@ -20,7 +20,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new And6a\TrombiBundle\And6aTrombiBundle(),
             new And6a\UserBundle\And6aUserBundle(),
-            new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+            //new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
