@@ -3,9 +3,11 @@
 {% block body %}
 	<h2>{{ group.name }}</h2>
 
-	{{ users|length }}
+	<p class="center">{{ users|length }} personne(s) trouvée(s)</p>
 
+  <ul class="items">
 	{% for user in users %}
-		- {{ user.username }}
+		<li>{% render "And6aUserBundle:Default:getBadge" with {user_id: user.id} %}</li>
 	{% endfor %}
+  </ul>
 {% endblock %}

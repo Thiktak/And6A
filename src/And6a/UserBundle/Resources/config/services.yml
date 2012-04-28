@@ -1,7 +1,14 @@
 parameters:
 #    and6a_user.example.class: And6a\UserBundle\Example
 
-services:
+#services:
 #    and6a_user.example:
 #        class: %and6a_user.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+services:
+    and6a_user.profile.form.type:
+        class: And6a\UserBundle\Form\Type\ProfileFormType
+        arguments: [%fos_user.model.user.class%]
+        tags:
+            - { name: form.type, alias: and6a_user_profile }

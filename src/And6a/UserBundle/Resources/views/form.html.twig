@@ -1,6 +1,20 @@
 
 {% block field_label %}
 {% spaceless %}
-    <label for="{{ id }}">{{ id|trans([], 'FOSUserBundle') }}</label>
+    <label for="{{ id }}" class="control-label">{{ id|trans([], 'FOSUserBundle') }}</label>
 {% endspaceless %}
 {% endblock field_label %}
+
+{% block field_row %}
+    <div class="clearfix {% if errors|length > 0 %}error{% endif %}">
+        {{ form_label(form, label) }}
+        <div class="input">
+            {% set class = '' %}
+            {% if errors|length > 0 %}
+                {% set class = 'error' %}
+            {% endif %}
+            {{ form_widget(form, { 'attr': { 'class': class } }) }}
+            {{ form_errors(form) }}
+        </div>
+    </div>
+{% endblock field_row %}

@@ -2,7 +2,8 @@
 <a href="#user-{{user.id}}">
 {%endif%}
   <figure class="user user-{{style|default('badge')}}">
-    <img src="{#{user.avatar}#}" />
+    {% set avatar = user.avatar|default('bundles/and6auser/images/empty-avatar.png') %}
+    <img src="{{ asset(avatar) }}" />
     <figcaption>
       <span class="name">{{user.username}}</span>
       <span class="fname">{#{user.fname}#}</span>

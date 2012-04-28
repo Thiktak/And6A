@@ -1,0 +1,41 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+  <h1>{{ user.username }}</h1>
+
+  <dl class="dl-horizontal">
+    <dt>Nom</dt>
+    <dd>{{ user.name }}</dd>
+
+    <dt>Prénom</dt>
+    <dd>{{ user.fname }}</dd>
+
+    <dt>Né le</dt>
+    <dd>{% if user.birthday %} {{ user.birthday|date('j/m/Y') }} {% endif %}</dd>
+  </dl>
+
+  <br style="clear: both"/>
+
+  <h2>Son parcours</h2>
+  <dl class="dl-horizontal">
+    <dt>2009</dt>
+    <dd>
+      <ul>
+        <li>-</li>
+        <li>-</li>
+        <li>-</li>
+      </ul>
+    </dd>
+  </dl>
+
+  <br style="clear: both"/>
+
+  <dl class="dl-horizontal">
+  {% for info in user.contacts %}
+    <dt>{{info.type}}</dt>
+    <dd>{{info.value}}</dd>
+
+  {% endfor %}
+  </dl>
+
+{% endblock %}

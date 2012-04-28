@@ -4,8 +4,8 @@ And6aTrombiBundle_group_list:
 
 And6aTrombiBundle_user_list:
     pattern:  /{group}/{year}
-    defaults: { _controller: And6aTrombiBundle:User:show }
+    defaults: { _controller: And6aTrombiBundle:Group:show }
 
 And6aTrombiBundle_user_view:
-    pattern:  /{group}/{year}
-    defaults: { _controller: And6aTrombiBundle:User:view }
+    pattern:  /{group}/{year}/{id}
+    defaults: { _controller: And6aUserBundle:Default:view }
