@@ -1,0 +1,33 @@
+And6a\TrombiBundle\Entity\GroupsUser:
+  type: entity
+  table: group_user
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    group_id:
+      type: integer
+    user_id:
+      type: integer
+    year:
+      type: smallint
+      length: 4
+    role:
+      type: string
+      length: 255
+  manyToOne:
+    groups:
+      targetEntity: Groups
+      inversedBy: users
+      joinColumn:
+          name: group_id
+          referencedColumnName: id
+    users:
+      targetEntity: \And6a\UserBundle\Entity\User
+      inversedBy: groups
+      joinColumn:
+          name: user_id
+          referencedColumnName: id
+  lifecycleCallbacks: {  }

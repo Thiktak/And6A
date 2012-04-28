@@ -1,0 +1,15 @@
+<ul>
+  {% for item in groups %}
+    <li class="cell-{{item.slug|upper}}">
+      <a href="{{ path('And6aTrombiBundle_group_list', {group: item.slug}) }}">{{item.name}}</a>
+    </li>
+  {% endfor %}
+      <!--
+      <li class="cell-AS"><a href="#">Automatique et Systèmes</a></li>
+      <li class="cell-ME"><a href="#">Mécanique</a></li>
+      <li class="cell-TF"><a href="#">Textiles et fibres</a></li>
+      <li class="cell-FA"><a href="#">Filières par alternances</a></li>
+      <li class="cell-AD"><a href="#">Administration</a></li>
+      <li class="cell-CL"><a href="#">Les Clubs</a></li>
+      -->
+</ul>

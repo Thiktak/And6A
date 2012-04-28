@@ -1,0 +1,24 @@
+And6a\TrombiBundle\Entity\Groups:
+  type: entity
+  table: user_group
+  fields:
+    id:
+      type: integer
+      id: true
+      generator:
+        strategy: AUTO
+    name:
+      type: string
+      length: 255
+    slug:
+      type: string
+      length: 255
+    descr:
+      type: text
+    isclass:
+      type: boolean
+  oneToMany:
+    users:
+      targetEntity: GroupsUser
+      mappedBy: groups
+  lifecycleCallbacks: {  }

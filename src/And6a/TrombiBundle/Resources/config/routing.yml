@@ -1,3 +1,11 @@
-And6aTrombiBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: And6aTrombiBundle:Default:index }
+And6aTrombiBundle_group_list:
+    pattern:  /{group}
+    defaults: { _controller: And6aTrombiBundle:Group:show }
+
+And6aTrombiBundle_user_list:
+    pattern:  /{group}/{year}
+    defaults: { _controller: And6aTrombiBundle:User:show }
+
+And6aTrombiBundle_user_view:
+    pattern:  /{group}/{year}
+    defaults: { _controller: And6aTrombiBundle:User:view }

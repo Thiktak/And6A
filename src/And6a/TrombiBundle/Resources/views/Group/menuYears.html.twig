@@ -1,0 +1,10 @@
+<ul>
+    {% for year in years %}
+    <li>
+    	<a href="#" style="position: relative">
+    		{{ year.value }} - {{ year.value+3 }}
+    		<span style="position: absolute; line-height: 1em; bottom: 2px; left: 0; right: 0; font-size: .5em">3A</span>
+    	</a>
+    </li>
+    {% endfor %}
+</ul>

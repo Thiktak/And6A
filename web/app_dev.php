@@ -19,6 +19,14 @@ require_once __DIR__.'/../app/AppKernel.php';
 
 use Symfony\Component\HttpFoundation\Request;
 
+
+function EntityDump($var)
+{
+	echo '<pre class="alert alert-box alert-info" style="margin: .5em;">';
+	\Doctrine\Common\Util\Debug::dump($var);
+	echo '</pre>';
+}
+
 $kernel = new AppKernel('dev', true);
 $kernel->loadClassCache();
 $kernel->handle(Request::createFromGlobals())->send();

@@ -1,0 +1,11 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+	<h2>{{ group.name }}</h2>
+
+	{{ users|length }}
+
+	{% for user in users %}
+		- {{ user.username }}
+	{% endfor %}
+{% endblock %}
