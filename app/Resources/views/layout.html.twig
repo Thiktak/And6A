@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-  <html>
+<html>
   <head>
    <meta charset="UTF-8" />
-    <title>And6a {% block title %}Welcome!{% endblock %}</title>
+    <title>And6a - {% block title %}ENSISA Trombinoscope{% endblock %}</title>
     {% block stylesheets %}{% endblock %}
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" />
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
@@ -14,6 +14,11 @@
 
           {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
           <ul id="nav-user" class="pull-right">
+            <li>
+              <form action="{{ path('And6aTrombiBundle_search0') }}" method="GET" class="form-search navbar-search">
+                <input type="text" name="q" class="input-medium search-query" placeholder="Rechercher" />
+              </form>
+            </li>
             <li class="btn btn-inverse dropdown">
               <a class="user-badge dropdown-toggle" data-toggle="dropdown" href="#">
                 {{ app.user.username }}
@@ -21,18 +26,26 @@
               </a>
               <ul class="dropdown-menu">
 
-                <li><a href="{{ path('fos_user_profile_show') }}">Mon profil</a></li>
+                <li><a href="{{ path('And6aTrombiBundle_user_go', {id: app.user.id}) }}">Mon profil</a></li>
                 <li><a href="{{ path('fos_user_profile_edit') }}">Editer mon profil</a></li>
                 <li class="divider"></li>
+                <li><a href="#covoiturage">Covoiturage</a></li>
+                <li class="divider"></li>
+                {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                <li><a href="#admin">Admin</a></li>
+                <li class="divider"></li>
+                {% endif %}
                 <li><a href="{{ path('fos_user_security_logout') }}">Déconnexion</a></li>
               </ul>
             </li>
           </ul>
           {% endif %}
-          <hgroup>
-            <h1>Trombi</h1>
-            <h2>Ensisa</h2>
-          </hgroup>
+          <a href="{{ path('_welcome') }}">
+            <hgroup>
+              <h1>Trombi</h1>
+              <h2>Ensisa</h2>
+            </hgroup>
+          </a>
         </header>
 
         <nav id="nav" role="nav" class="container">
@@ -40,9 +53,7 @@
         </nav>
       </div>
 
-      <div id="years" class="pagination pagination-centered">
-        {% render "And6aTrombiBundle:Group:getMenuYears" %}
-      </div>
+      {% render "And6aTrombiBundle:Group:getMenuYears" %}
 
       <div id="content-container">
         <div id="main" class="container">
@@ -75,6 +86,10 @@
       <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-carousel.js"></script>-->
       <!--<script src="http://twitter.github.com/bootstrap/assets/js/bootstrap-typeahead.js"></script>-->
       <!--<script src="http://twitter.github.com/bootstrap/assets/js/application.js"></script>-->
+      <script src="{{ asset('js/jquery.lazyload.min.js') }}"></script>
+      <script>
+        $('img[data-original]').lazyload({ threshold : 200 });
+      </script>
     {% endblock %}
   </body>
 </html>

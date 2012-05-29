@@ -1,8 +1,8 @@
 {%if withLink %}
-<a href="#user-{{user.id}}">
+<a href="{{ path('And6aTrombiBundle_user_go', {id: user.id}) }}">
 {%endif%}
   <figure class="user user-{{style|default('badge')}}">
-    <img src="{{user.avatar}}" />
+    {% if user.avatar %}<img src="" data-src="{{ asset(user.avatar) }}" alt="-" />{% endif %}
     <figcaption>
       <span class="name">{{user.name}}</span>
       <span class="fname">{{user.fname}}</span>

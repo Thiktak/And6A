@@ -1,0 +1,28 @@
+{% extends '::layout.html.twig' %}
+
+{% block body %}
+	<h2>Résultat de la recherche pour <em>"{{q}}"</em></h2>
+
+	<p class="center">{{ users|length }} personne(s) trouvée(s)</p>
+
+  <ul class="items">
+	{% for user in users %}
+		<li>
+      <a href="{{ path('And6aTrombiBundle_user_go', {id: user.id}) }}#{{user.usernameCanonical}}">
+        <figure class="user user-badge">
+          {% if user.avatar -%}
+          <img src="{{ asset('img/avatar-default.png') }}" data-original="{{ asset('uploads/avatar/' ~ user.avatar) }}" alt="-" />
+          {%- else -%}
+          <img src="{{ asset('img/avatar-default.png') }}" alt="-" />
+          {%- endif %}
+          <figcaption>
+            <span class="name">{{user.name}}</span>
+            <span class="fname">{{user.fname}}</span>
+            <span class="class">{{user.current.level|default('?')}}a {{user.class.name|default('')}}</span>
+          </figcaption>
+        </figure>
+      </a>
+    </li>
+	{% endfor %}
+  </ul>
+{% endblock %}

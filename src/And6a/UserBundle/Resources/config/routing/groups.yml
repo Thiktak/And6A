@@ -1,0 +1,30 @@
+groups:
+    pattern:  /
+    defaults: { _controller: "And6aUserBundle:Groups:index" }
+
+groups_show:
+    pattern:  /{id}/show
+    defaults: { _controller: "And6aUserBundle:Groups:show" }
+
+groups_new:
+    pattern:  /new
+    defaults: { _controller: "And6aUserBundle:Groups:new" }
+
+groups_create:
+    pattern:  /create
+    defaults: { _controller: "And6aUserBundle:Groups:create" }
+    requirements: { _method: post }
+
+groups_edit:
+    pattern:  /{id}/edit
+    defaults: { _controller: "And6aUserBundle:Groups:edit" }
+
+groups_update:
+    pattern:  /{id}/update
+    defaults: { _controller: "And6aUserBundle:Groups:update" }
+    requirements: { _method: post }
+
+groups_delete:
+    pattern:  /{id}/delete
+    defaults: { _controller: "And6aUserBundle:Groups:delete" }
+    requirements: { _method: post }

@@ -20,12 +20,12 @@ class User extends BaseUser
   protected $id;
 
   /**
-   * @ORM\Column(type="string", length="255")
+   * @ORM\Column(type="string", length="255", nullable="true")
    */
   protected $name;
 
   /**
-   * @ORM\Column(type="string", length="255")
+   * @ORM\Column(type="string", length="255", nullable="true")
    */
   protected $fname;
 
@@ -35,14 +35,31 @@ class User extends BaseUser
   protected $birthday;
 
   /**
-   * @ORM\OneToMany(targetEntity="\And6a\TrombiBundle\Entity\GroupsUser", mappedBy="users")
+   * @ORM\Column(type="string", length="255", nullable="true")
    */
-  protected $groups;
+  protected $avatar;
 
   /**
-   * @ORM\OneToMany(targetEntity="\And6a\UserBundle\Entity\Contact", mappedBy="user")
+   * @ORM\OneToMany(targetEntity="\And6a\TrombiBundle\Entity\GroupsUser", mappedBy="users", cascade={"persist"})
+   */
+  protected $class_groups;
+
+   /**
+   * @ORM\ManyToMany(targetEntity="\And6a\UserBundle\Entity\User", inversedBy="filleuls")
+   * @ORM\JoinTable(name="user_parrains")
+   */
+  protected $parrains;
+
+  /**
+   * @ORM\ManyToMany(targetEntity="\And6a\UserBundle\Entity\User", mappedBy="parrains")
+   */
+  protected $filleuls;
+
+  /**
+   * @ORM\OneToMany(targetEntity="\And6a\UserBundle\Entity\Contact", mappedBy="user", cascade={"persist"})
    */
   protected $contacts = null;
+  
 
   public function __construct()
   {
@@ -60,7 +77,7 @@ class User extends BaseUser
    */
   public function addGroupsUser(\And6a\TrombiBundle\Entity\GroupsUser $groups)
   {
-    $this->groups[] = $groups;
+    $this->class_groups[] = $groups;
   }
 
 
@@ -69,9 +86,9 @@ class User extends BaseUser
    *
    * @return Doctrine\Common\Collections\Collection 
    */
-  public function getGroups()
+  public function getGroupsUser()
   {
-    return $this->groups;
+    return $this->class_groups;
   }
 
 
@@ -173,5 +190,106 @@ class User extends BaseUser
     public function setContacts($contacts)
     {
         $this->contacts = $contacts;
+    }
+    
+    public function __toString()
+    {
+      if( empty($this->name) && empty($this->fname) )
+        return implode('.', array_reverse(explode('.', $this->username)));
+      else
+        return strtoupper($this->name) . ' ' . $this->fname;
+    }
+
+    /**
+     * Get class_groups
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getClassGroups()
+    {
+        return $this->class_groups;
+    }
+
+    /**
+     * Get current
+     *
+     * @return And6a\TrombiBundle\Entity\GroupsUser 
+     */
+    public function getCurrent()
+    {
+      $current = null;
+      
+      foreach( $this -> class_groups as $groups )
+        if( $groups->getGroups()->getIsClass() )
+          if( empty($current) || $groups->getYear() > $current->getYear() )
+            $current = $groups;
+      return $current;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param string $avatar
+     */
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return string 
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function getUrlAvatar()
+    {
+      if( $this->avatar )
+        return 'uploads/avatar/' . $this->avatar;
+      return null;
+    }
+
+    /**
+     * Add parrain
+     *
+     * @param And6a\UserBundle\Entity\User $parrain
+     */
+    public function addUser(\And6a\UserBundle\Entity\User $parrain)
+    {
+        $this->parrain[] = $parrain;
+    }
+
+    /**
+     * Get parrains
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getParrains()
+    {
+        return $this->parrains;
+    }
+
+    /**
+     * Set parrains
+     *
+     * @param And6a\UserBundle\Entity\User $parrains
+     */
+    public function setParrains(\And6a\UserBundle\Entity\User $parrains)
+    {
+        $this->parrains = $parrains;
+    }
+
+    /**
+     * Get filleuls
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getFilleuls()
+    {
+        return $this->filleuls;
     }
 }

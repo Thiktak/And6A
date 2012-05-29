@@ -1,6 +1,19 @@
 {% extends "::layout.html.twig" %}
 
 {%block body %}
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span2">
+        <div class="sidebar-nav">
+          <ul class="nav nav-list">
+            <li><a href="{{ path('fos_user_profile_edit') }}">Profil</a></li>
+            <li><a href="{{ path('And6aUserBundle_user_change_avatar') }}">Photo</a></li>
+            <li><a href="{{ path('contact') }}">Contact</a></li>
+            <li><a href="{{ path('groups') }}">Classes</a></li>
+          </ul>
+        </div><!--/.well -->
+      </div><!--/span-->
+      <div class="span10">
     {% for key, message in app.session.getFlashes() %}
     <div class="alert alert-info {{ key }}">
       {{ message|trans({}, 'FOSUserBundle') }}
@@ -22,4 +35,8 @@
         <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
       {% endif %}
     </div>
+      </div>
+    </div>
+  </div>
+  
 {%endblock%}

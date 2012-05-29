@@ -1,0 +1,27 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+{# note the form_enctype, without it the form will not bind in the controller #}
+
+<header>
+  <h1>Modification de l'avatar</h1>
+</header>
+
+<div class="row">
+  <div class="span8">
+    <form action="" method="post" class="form form-horizontal" {{ form_enctype(form) }}>
+      {{ form_widget(form, {show_legend: 0}) }}
+      <div class="t-center">
+          <button type="submit" class="btn btn-primary">Envoyer</button>
+      </div>
+    </form>
+  </div>
+  <div class="span4 well" style="text-align: center;">
+    {% if app.user.avatar %}
+    <img src="{{ asset(img_avatar) }}" alt="Avatar" style="max-height: 200px; max-width: 200px;" />
+    {% else %}
+    <img src="{{ asset('img/avatar-default.png') }}" alt="Pas d'avatar" />
+    {% endif %}
+  </div>
+</div>
+{% endblock %}

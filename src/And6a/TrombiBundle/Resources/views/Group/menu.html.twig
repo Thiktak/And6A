@@ -1,9 +1,19 @@
 <ul>
-  {% for item in groups %}
+  {% for item in groups.1 %}
     <li class="cell-{{item.slug|upper}}">
       <a href="{{ path('And6aTrombiBundle_group_list', {group: item.slug}) }}">{{item.name}}</a>
     </li>
   {% endfor %}
+    <li class="dropdown">
+      <a class="dropdown-toggle" data-toggle="dropdown" href="#">Clubs <b class="caret"></b></a>
+      <ul class="dropdown-menu">
+      {% for item in groups.0 %}
+        <li class="cell-{{item.slug|upper}}">
+          <a href="{{ path('And6aTrombiBundle_group_list', {group: item.slug}) }}">{{item.name}}</a>
+        </li>
+      {% endfor %}
+      </ul>
+    </li>
       <!--
       <li class="cell-AS"><a href="#">Automatique et Systèmes</a></li>
       <li class="cell-ME"><a href="#">Mécanique</a></li>

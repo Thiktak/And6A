@@ -38,7 +38,7 @@ class Contact
     /**
      * @var boolean $private
      *
-     * @ORM\Column(name="private", type="boolean")
+     * @ORM\Column(name="private", type="boolean", nullable="true")
      */
     private $private;
 

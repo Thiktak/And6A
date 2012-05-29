@@ -1,0 +1,22 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<h1>Groups creation</h1>
+
+<form action="{{ path('groups_create') }}" method="post" class="form form-horizontal" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p>
+        <button type="submit">Create</button>
+    </p>
+</form>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('groups') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+
+{% endblock %}

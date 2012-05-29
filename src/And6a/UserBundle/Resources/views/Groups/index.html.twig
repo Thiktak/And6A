@@ -1,0 +1,45 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<h1>Mes groupes &amp; classes - Mon parcours</h1>
+
+
+<table class="records_list">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr {%if entity.isclass %} class="well"{% endif %}>
+            <td>
+                <strong>{{ entity.name }}</strong>
+                <em>{{ entity.descr }}</em>
+            </td>
+            <td>
+                <ul>
+                    <li>
+                        <a href="{{ path('groups_show', { 'id': entity.id }) }}">show</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('groups_edit', { 'id': entity.id }) }}">edit</a>
+                    </li>
+                </ul>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<ul>
+    <li>
+        <a href="{{ path('groups_new') }}">
+            Create a new entry
+        </a>
+    </li>
+</ul>
+
+{% endblock %}

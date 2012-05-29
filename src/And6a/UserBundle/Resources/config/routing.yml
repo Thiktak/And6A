@@ -1,7 +1,3 @@
-And6aUserBundle_homepage:
-    pattern:  /hello/{name}
-    defaults: { _controller: And6aUserBundle:Default:index }
-
 # app/config/routing.yml
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
@@ -21,3 +17,19 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+And6aUserBundle_contact:
+    resource: "routing/contact.php"
+    prefix: /contact
+
+And6aTrombiBundle_groups:
+    resource: "routing/groupsuser.yml"
+    prefix: /groups
+
+#And6aUserBundle_groups:
+#    resource: "routing/groups.yml"
+#    prefix: /groups
+
+And6aUserBundle_user_change_avatar:
+    pattern:  /profile/avatar
+    defaults: { _controller: And6aUserBundle:Default:avatar }

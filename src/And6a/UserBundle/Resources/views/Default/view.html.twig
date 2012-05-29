@@ -1,9 +1,15 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-  <h1>{{ user.username }}</h1>
+  <h1>{{ user }} ({{user.current.level|default('?')}}A - {{user.current.groups.slug|default('?')|upper}})</h1>
 
-  <dl class="dl-horizontal">
+
+  <div style="position: absolute; top: 2em;  right: 2em; width: 200px; text-align: center;">
+    {% set avatar = user.urlAvatar|default(asset('img/avatar-default.png')) %}
+    <img src="{{ asset(avatar) }}" class="avatar" />
+  </div>
+
+  <dl class="dl-horizontal dl-space">
     <dt>Nom</dt>
     <dd>{{ user.name }}</dd>
 
@@ -11,31 +17,100 @@
     <dd>{{ user.fname }}</dd>
 
     <dt>Né le</dt>
-    <dd>{% if user.birthday %} {{ user.birthday|date('j/m/Y') }} {% endif %}</dd>
+    <dd>{% if user.birthday %} {{ user.birthday|date('j/m/Y') }} (~ {{ ('now'|date('Y')) - (user.birthday|date('Y')) }} ans) {% endif %}</dd>
   </dl>
 
   <br style="clear: both"/>
 
-  <h2>Son parcours</h2>
-  <dl class="dl-horizontal">
-    <dt>2009</dt>
-    <dd>
-      <ul>
-        <li>-</li>
-        <li>-</li>
-        <li>-</li>
-      </ul>
-    </dd>
-  </dl>
+  <hr />
 
-  <br style="clear: both"/>
-
-  <dl class="dl-horizontal">
+  <h2>Ses informations</h2>
+  <dl class="dl-horizontal dl-space">
   {% for info in user.contacts %}
-    <dt>{{info.type}}</dt>
-    <dd>{{info.value}}</dd>
+    {% if app.user == user %}
+    <dt>
+      <a href="{{ path('contact_edit', {id: info.id}) }}" class="editable">
+        {{ ('infos.contact.' ~ info.type)|trans({}, 'messages') }}
+      </a>
+    </dt>
+    <dd>
+      <a href="{{ path('contact_edit', {id: info.id}) }}" class="editable">
+        {{info.value}}
+        {%if info.private == 1 %}<b class="icon-eye-close" title="Donnée privée"></b>{% endif %}
+      </a>
+    </dd>
+    {% else %}
+    <dt>
+      {{ ('infos.contact.' ~ info.type)|trans({}, 'messages') }}
+    </dt>
+    <dd>
+      {{info.value}}
+    </dd>
+    {% endif %}
 
   {% endfor %}
   </dl>
+  <br style="clear: both"/>
 
+  <hr />
+
+  <h2>Son parcours</h2>
+  <dl class="dl-horizontal dl-space">
+    {% for year, item in timeline %}
+    <dt style="margin-right: 1em">{{ year }}</dt>
+      {% for group in item %}
+    <dd class="class">
+      <a href="{{ path('And6aTrombiBundle_user_list', {group: group.groups.slug, year: year}) }}" class="btn {% if group.groups.isclass %}btn-success{% endif %}">
+        <strong style="font-size: .75em">
+          {{group.groups.name}}
+          {% if group.level %} ({{group.level}}){% endif %}
+        </strong>
+        {% if group.role %} <span style="display: block">({{group.role}})</span>{% endif %}
+      </a>
+    </dd>
+      {% endfor %}
+    {% endfor %}
+  </dl>
+
+  <br style="clear: both"/>
+
+  <div id="gmap" class="gmap" style="margin-top: 2em; height: 400px; box-shadow: 0 0 5px -2px black;"></div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent()}}    
+    <script src="http://maps.google.com/maps/api/js?sensor=false"></script>
+    <script src="{{ asset('js/jquery-gmap3-4.1/gmap3.js') }}"></script> 
+    <script>
+      $(document).ready(function() {
+
+        $().gmap3('setDefault', {
+          unit:'km',
+          init:{
+            zoom: 5
+          }
+        });
+
+        $('#gmap').gmap3({
+          action: 'addMarker',
+          address: '12 rue des Frères Lumière 68093 Mulhouse CEDEX',
+          options: {
+            icon: new google.maps.MarkerImage('https://chart.googleapis.com/chart?chst=d_simple_text_icon_left&chld=|1|000|school|24|000|FFF')
+          }
+        });
+
+        {% for info in user.contacts -%}
+        {%- if info.type|slice(0, 4) == 'addr' -%}
+        $('#gmap').gmap3({
+          action: 'addMarker',
+          address: '{{ info.value|replace({"\n": ' ', "\r" : ' '}) }}',
+          options: {
+            icon: new google.maps.MarkerImage('http://maps.gstatic.com/mapfiles/icon_green.png')
+          }
+        });
+        {% endif -%}
+        {%- endfor %}
+      });
+    </script>
 {% endblock %}

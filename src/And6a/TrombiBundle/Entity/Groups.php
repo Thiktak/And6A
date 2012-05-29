@@ -9,224 +9,154 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Groups
 {
-  /**
-   * @var integer $id
-   */
-  private $id;
-
-  /**
-   * @var smallint $year
-   */
-  private $year;
-
-  /**
-   * @var string $role
-   */
-  private $role;
-
   
+    /**
+     * @var integer $id
+     */
+    private $id;
 
-  /**
-   * Get id
-   *
-   * @return integer 
-   */
-  public function getId()
-  {
-    return $this->id;
-  }
+    /**
+     * @var string $name
+     */
+    private $name;
 
-  /**
-   * Set year
-   *
-   * @param smallint $year
-   */
-  public function setYear($year)
-  {
-    $this->year = $year;
-  }
+    /**
+     * @var string $slug
+     */
+    private $slug;
 
-  /**
-   * Get year
-   *
-   * @return smallint 
-   */
-  public function getYear()
-  {
-    return $this->year;
-  }
+    /**
+     * @var text $descr
+     */
+    private $descr;
 
-  /**
-   * Set role
-   *
-   * @param string $role
-   */
-  public function setRole($role)
-  {
-    $this->role = $role;
-  }
+    /**
+     * @var boolean $isclass
+     */
+    private $isclass;
 
-  /**
-   * Get role
-   *
-   * @return string 
-   */
-  public function getRole()
-  {
-    return $this->role;
-  }
-  /**
-   * @var string $name
-   */
-  private $name;
+    /**
+     * @var And6a\TrombiBundle\Entity\GroupsUser
+     */
+    private $users;
 
-  /**
-   * @var string $salt
-   */
-  private $salt;
+    public function __construct()
+    {
+        $this->users = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+    
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  /**
-   * @var text $descr
-   */
-  private $descr;
+    /**
+     * Set name
+     *
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
 
-  /**
-   * @var boolean $isclass
-   */
-  private $isclass;
+    /**
+     * Get name
+     *
+     * @return string 
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+    }
 
-  /**
-   * Set name
-   *
-   * @param string $name
-   */
-  public function setName($name)
-  {
-    $this->name = $name;
-  }
+    /**
+     * Get slug
+     *
+     * @return string 
+     */
+    public function getSlug()
+    {
+        return $this->slug;
+    }
 
-  /**
-   * Get name
-   *
-   * @return string 
-   */
-  public function getName()
-  {
-    return $this->name;
-  }
+    /**
+     * Set descr
+     *
+     * @param text $descr
+     */
+    public function setDescr($descr)
+    {
+        $this->descr = $descr;
+    }
 
-  /**
-   * Set salt
-   *
-   * @param string $salt
-   */
-  public function setSalt($salt)
-  {
-    $this->salt = $salt;
-  }
+    /**
+     * Get descr
+     *
+     * @return text 
+     */
+    public function getDescr()
+    {
+        return $this->descr;
+    }
 
-  /**
-   * Get salt
-   *
-   * @return string 
-   */
-  public function getSalt()
-  {
-    return $this->salt;
-  }
+    /**
+     * Set isclass
+     *
+     * @param boolean $isclass
+     */
+    public function setIsclass($isclass)
+    {
+        $this->isclass = $isclass;
+    }
 
-  /**
-   * Set descr
-   *
-   * @param text $descr
-   */
-  public function setDescr($descr)
-  {
-    $this->descr = $descr;
-  }
+    /**
+     * Get isclass
+     *
+     * @return boolean 
+     */
+    public function getIsclass()
+    {
+        return $this->isclass;
+    }
 
-  /**
-   * Get descr
-   *
-   * @return text 
-   */
-  public function getDescr()
-  {
-    return $this->descr;
-  }
+    /**
+     * Add users
+     *
+     * @param And6a\TrombiBundle\Entity\GroupsUser $users
+     */
+    public function addGroupsUser(\And6a\TrombiBundle\Entity\GroupsUser $users)
+    {
+        $this->users[] = $users;
+    }
 
-  /**
-   * Set isclass
-   *
-   * @param boolean $isclass
-   */
-  public function setIsclass($isclass)
-  {
-    $this->isclass = $isclass;
-  }
-
-  /**
-   * Get isclass
-   *
-   * @return boolean 
-   */
-  public function getIsclass()
-  {
-    return $this->isclass;
-  }
-  /**
-   * @var string $slug
-   */
-  private $slug;
+    /**
+     * Get users
+     *
+     * @return Doctrine\Common\Collections\Collection 
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
 
 
-  /**
-   * Set slug
-   *
-   * @param string $slug
-   */
-  public function setSlug($slug)
-  {
-    $this->slug = $slug;
-  }
-
-  /**
-   * Get slug
-   *
-   * @return string 
-   */
-  public function getSlug()
-  {
-    return $this->slug;
-  }
-  /**
-   * @var And6a\TrombiBundle\Entity\GroupsUser
-   */
-  private $users;
-
-  public function __construct()
-  {
-    $this->users = new \Doctrine\Common\Collections\ArrayCollection();
-  }
-  
-  /**
-   * Add users
-   *
-   * @param And6a\TrombiBundle\Entity\GroupsUser $users
-   */
-  public function addGroupsUser(\And6a\TrombiBundle\Entity\GroupsUser $users)
-  {
-    $this->users[] = $users;
-  }
-
-  /**
-   * Get users
-   *
-   * @return Doctrine\Common\Collections\Collection 
-   */
-  public function getUsers()
-  {
-    return $this->users;
-  }
+    public function __toString() {
+        return $this->name;
+    }
 }

@@ -1,13 +1,17 @@
 {%if withLink %}
-<a href="#user-{{user.id}}">
+<a href="{{ path('And6aTrombiBundle_user_go', {id: user.id}) }}">
 {%endif%}
   <figure class="user user-{{style|default('badge')}}">
-    {% set avatar = user.avatar|default('bundles/and6auser/images/empty-avatar.png') %}
+    {% set avatar = user.urlAvatar|default('bundles/and6auser/images/empty-avatar.png') %}
     <img src="{{ asset(avatar) }}" />
     <figcaption>
-      <span class="name">{{user.username}}</span>
-      <span class="fname">{#{user.fname}#}</span>
-      <span class="class">{#{user.year}#}a {#{user.class.name|default('')}#}</span>
+      <span class="name">{{user}}</span>
+      {% if not(user.current is empty) %}
+      <span class="class">
+        {{user.current.year}}
+        ({%if user.current.year < "now"|date('Y') %}&infin;{%else%}{{user.current.level}}A{%endif%})
+      </span>
+      {% endif %}
     </figcation>
   </figure>
 {%if withLink %}

@@ -2,12 +2,50 @@
 
 {% block body %}
 	<h2>{{ group.name }}</h2>
+  
+  {% if not(group.isClass) %}
+  <div class="pull-right" style="width: 240px; padding: 5px; text-align: justify; font-size: .75em;">
+    
+    {{ group.descr|nl2br }}
+
+    <hr />
+
+    <ul>
+    {% for g in user.classGroups %}
+    {% if g.groups.id == group.id %}
+      <li>{{ g.groups }} ({{g.year}} {{ g.role }})</li>
+    {% endif %}
+    {% endfor %}
+    </ul>
+
+    <p style="text-align: center">
+      <a href="{{ path('groups_subsribe', {slug: group.slug}) }}" class="btn btn-mini btn-success">S'incrire dans ce groupe</a>
+    </p>
+  </div>
+  {% endif %}
 
 	<p class="center">{{ users|length }} personne(s) trouvée(s)</p>
 
-  <ul class="items">
-	{% for user in users %}
-		<li>{% render "And6aUserBundle:Default:getBadge" with {user_id: user.id} %}</li>
+  <ul class="items" style="text-align: center">
+	{% for i, user in users %}
+		<li>
+      <a href="{{ path('And6aTrombiBundle_user_go', {id: user.id}) }}#{{user.usernameCanonical}}">
+        <figure class="user user-badge">
+          {% if user.avatar -%}
+          <img src="{{ asset('img/avatar-default.png') }}" data-original="{{ asset('uploads/avatar/' ~ user.avatar) }}" alt="-" />
+          {%- else -%}
+          <img src="{{ asset('img/avatar-default.png') }}" alt="-" />
+          {%- endif %}
+          <figcaption>
+            <span class="name">{{user.name}}</span>
+            <span class="fname">{{user.fname}}</span>
+            <span class="class">{{user.current.level|default('?')}}a {{user.class.name|default('')}}</span>
+          </figcaption>
+        </figure>
+      </a>
+    </li>
 	{% endfor %}
   </ul>
+  
+  <br style="clear: both" />
 {% endblock %}

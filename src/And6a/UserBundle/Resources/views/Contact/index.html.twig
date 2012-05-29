@@ -1,0 +1,42 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<h1>Mes informations personnelles</h1>
+
+<dl class="dl-horizontal">
+    {% for entity in entities %}
+    <dt>{{ ('infos.contact.' ~ entity.type)|trans({}, 'messages') }}</dt>
+    <dd style="padding-bottom: 2em">
+        
+        <div class="dropdown pull-right">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+                <li>
+                    <a href="{{ path('contact_edit', { 'id': entity.id }) }}">edit</a>
+                </li>
+                <li>
+                    <a href="{{ path('contact_delete', { 'id': entity.id }) }}">delete</a>
+                </li>
+            </ul>
+        </div>
+        {{entity.value}}
+
+        {%if entity.private %} <span class="badge badge-warning"><b class="icon-eye-close" title="Donnée privée"></b></span> {%endif%}
+    </dd>
+    {% endfor %}
+</dl>
+
+<aside class="actions">
+    <ul>
+        <li>
+            <a class="btn btn-mini btn-success" href="{{ path('contact_new') }}">
+                <i class="icon-plus icon-white"></i> une information
+            </a>
+        </li>
+    </ul>
+</aside>
+
+{% endblock %}

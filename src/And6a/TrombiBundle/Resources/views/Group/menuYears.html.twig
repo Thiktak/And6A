@@ -1,10 +1,16 @@
-<ul>
-    {% for year in years %}
-    <li>
-    	<a href="#" style="position: relative">
-    		{{ year.value }} - {{ year.value+3 }}
-    		<span style="position: absolute; line-height: 1em; bottom: 2px; left: 0; right: 0; font-size: .5em">3A</span>
-    	</a>
-    </li>
-    {% endfor %}
-</ul>
+{% if isIn %}
+      <div id="years" class="pagination pagination-centered">
+        <ul>
+            {% for year in years %}
+            <li>
+            	<a href="{{path('And6aTrombiBundle_user_list', {group: group, year: year.value})}}" style="position: relative; opacity: 1">
+            		{{ year.value }} - {{ year.value+3 }}
+            		{% if max-year.value >= 0 %}
+                <span style="position: absolute; line-height: 1em; bottom: 2px; left: 0; right: 0; font-size: .5em">{{max-year.value+1}}A</span>
+                {% endif %}
+            	</a>
+            </li>
+            {% endfor %}
+        </ul>
+      </div>
+{% endif %}

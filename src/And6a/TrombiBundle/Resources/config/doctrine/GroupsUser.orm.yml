@@ -14,13 +14,19 @@ And6a\TrombiBundle\Entity\GroupsUser:
     year:
       type: smallint
       length: 4
+    level:
+      type: string
+      length: 5
+      nullable: true
     role:
       type: string
       length: 255
+      nullable: true
   manyToOne:
     groups:
       targetEntity: Groups
       inversedBy: users
+      orderBy: year
       joinColumn:
           name: group_id
           referencedColumnName: id

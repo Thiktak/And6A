@@ -31,6 +31,16 @@ class GroupsUser
      */
     private $role;
 
+    /**
+     * @var And6a\TrombiBundle\Entity\Groups
+     */
+    private $groups;
+
+    /**
+     * @var And6a\UserBundle\Entity\User
+     */
+    private $users;
+
 
     /**
      * Get id
@@ -121,11 +131,6 @@ class GroupsUser
     {
         return $this->role;
     }
-    /**
-     * @var And6a\TrombiBundle\Entity\Groups
-     */
-    private $groups;
-
 
     /**
      * Set groups
@@ -146,18 +151,13 @@ class GroupsUser
     {
         return $this->groups;
     }
-    /**
-     * @var And6a\TrombiBundle\Entity\Users
-     */
-    private $users;
-
 
     /**
      * Set users
      *
-     * @param And6a\TrombiBundle\Entity\Users $users
+     * @param And6a\UserBundle\Entity\User $users
      */
-    public function setUsers(\And6a\TrombiBundle\Entity\Users $users)
+    public function setUsers(\And6a\UserBundle\Entity\User $users)
     {
         $this->users = $users;
     }
@@ -165,10 +165,35 @@ class GroupsUser
     /**
      * Get users
      *
-     * @return And6a\TrombiBundle\Entity\Users 
+     * @return And6a\UserBundle\Entity\User 
      */
     public function getUsers()
     {
         return $this->users;
+    }
+    /**
+     * @var string $level
+     */
+    private $level;
+
+
+    /**
+     * Set level
+     *
+     * @param string $level
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+    }
+
+    /**
+     * Get level
+     *
+     * @return string 
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 }

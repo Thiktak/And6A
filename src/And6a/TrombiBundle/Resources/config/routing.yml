@@ -1,3 +1,19 @@
+And6aTrombiBundle_search0:
+    pattern:  /search
+    defaults: { _controller: And6aTrombiBundle:Search:redirect}
+
+And6aTrombiBundle_search:
+    pattern:  /search/{q}
+    defaults: { _controller: And6aTrombiBundle:Search:index}
+
+And6aTrombiBundle_user_view:
+    pattern:  /{group}/{year}/{id}
+    defaults: { _controller: And6aUserBundle:Default:view }
+
+And6aTrombiBundle_user_go:
+    pattern:  /user-{id}
+    defaults: { _controller: And6aUserBundle:Default:view }
+
 And6aTrombiBundle_group_list:
     pattern:  /{group}
     defaults: { _controller: And6aTrombiBundle:Group:show }
@@ -5,7 +21,3 @@ And6aTrombiBundle_group_list:
 And6aTrombiBundle_user_list:
     pattern:  /{group}/{year}
     defaults: { _controller: And6aTrombiBundle:Group:show }
-
-And6aTrombiBundle_user_view:
-    pattern:  /{group}/{year}/{id}
-    defaults: { _controller: And6aUserBundle:Default:view }

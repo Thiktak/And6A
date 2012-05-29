@@ -1,0 +1,35 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<header>
+    <h1>Edition d'une information de contact</h1>
+</header>
+
+<form action="{{ path('contact_update', { 'id': entity.id }) }}" method="post" class="form form-horizontal well" {{ form_enctype(edit_form) }}>
+    {{ form_widget(edit_form, {show_legend: 0}) }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Modifier</button>
+        <a class="btn btn-danger">Supprimer</a>
+    </div>
+</form>
+
+<div class="alert alert-box">
+    <p>En cochant la case <strong>Donnée privée</strong> vous empéchez à toutes personnes (hormis l'équipe administratice du site et vos responsables de club) d'avoir accès à vos données (via le site, ou via l'application).</p>
+</div>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('contact') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>
+        <form action="{{ path('contact_delete', { 'id': entity.id }) }}" method="post">
+            {{ form_widget(delete_form) }}
+            <button type="submit">Delete</button>
+        </form>
+    </li>
+</ul>
+
+{% endblock %}

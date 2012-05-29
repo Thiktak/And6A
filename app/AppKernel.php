@@ -21,6 +21,8 @@ class AppKernel extends Kernel
             new And6a\TrombiBundle\And6aTrombiBundle(),
             new And6a\UserBundle\And6aUserBundle(),
             new Mopa\BootstrapBundle\MopaBootstrapBundle(),
+            //new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
+            //new SimpleThings\EntityAudit\SimpleThingsEntityAuditBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

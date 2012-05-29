@@ -1,0 +1,28 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<header>
+  <h1>Ajout d'une information de contact</h1>
+</header>
+
+<form action="{{ path('contact_create') }}" method="post" class="form form-horizontal well" {{ form_enctype(form) }}>
+    {{ form_widget(form, {show_legend: 0}) }}
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Créer</button>
+    </div>
+</form>
+
+<div class="alert alert-box">
+    <p>En cochant la case <strong>Donnée privée</strong> vous empéchez à toutes personnes (hormis l'équipe administratice du site et vos responsables de club) d'avoir accès à vos données (via le site, ou via l'application).</p>
+</div>
+
+<ul class="record_actions">
+    <li>
+        <a href="{{ path('contact') }}">
+            Back to the list
+        </a>
+    </li>
+</ul>
+
+{% endblock %}

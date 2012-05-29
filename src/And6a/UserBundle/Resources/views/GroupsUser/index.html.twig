@@ -1,0 +1,62 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<header>
+    <h1>Liste des classes et groupes</h1>
+</header>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Groupe/Classe</th>
+            <th>Année</th>
+            <th>Promo (1/2/3A)</th>
+            <th>-</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for entity in entities %}
+        <tr {%if entity.groups.isClass %}class="well"{%endif%}>
+            <td>
+                {{ entity.groups }}
+                {%if entity.role %} (<em>{{ entity.role }}</em>){%endif%}
+                {%if entity.groups.isClass %} <span class="label label-success pull-right">CLASSE</span> {%endif%}
+            </td>
+            <td>{{ entity.year }}</td>
+            <td>{{ entity.level }}</td>
+            <td>
+                <div class="dropdown pull-right">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('groups_edit', { 'id': entity.id }) }}">edit</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('groups_delete', { 'id': entity.id }) }}">delete</a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<aside class="actions">
+    <ul>
+        <li>
+            <a class="btn btn-mini btn-success" href="{{ path('groups_new', {type: 1}) }}">
+                <i class="icon-plus icon-white"></i> une classe
+            </a>
+        </li>
+        <li>
+            <a class="btn btn-mini btn-success" href="{{ path('groups_new', {type: 2}) }}">
+                <i class="icon-plus icon-white"></i> un club
+            </a>
+        </li>
+    </ul>
+</aside>
+{% endblock %}

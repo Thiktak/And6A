@@ -1,7 +1,20 @@
 {% extends '::layout.html.twig' %}
 
 {% block body %}
-	{%for i in 1..30%}
-  	{% render "And6aUserBundle:Default:getBadge" with { user: 1, withLink: false } %}
-  {%endfor%}
+	<div class="well">
+    {{edito|raw}}
+  </div>
+  <div class="row-fluid">
+    <div class="well span6">
+      <h2>Les prochains anniversaires</h2>
+      <ul>
+        {% for item in birthdays %}
+        <li>{{item}} ({{item.birthday|date('d/m/Y')}})</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="well span6">
+      <h2>Covoiturage</h2>
+    </div>
+  </div>
 {% endblock %}

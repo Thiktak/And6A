@@ -1,0 +1,27 @@
+{% extends "And6aUserBundle::layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<header>
+  <h1>Ajout d'un Clubs/Classes</h1>
+</header>
+
+<aside style="text-align: center;">
+  <a class="btn" href="{{ path('groups_new', {type: 1}) }}">Classe</a>
+  <a class="btn" href="{{ path('groups_new', {type: 2}) }}">Club</a>
+</aside>
+
+<hr />
+
+
+{% if type %}
+<form action="{{ path('groups_create') }}" method="post" class="form form-horizontal well" {{ form_enctype(form) }}>
+    {{ form_widget(form, {show_legend: 0}) }}
+
+    <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Associer</button>
+    </div>
+</form>
+{% endif %}
+
+{% endblock %}

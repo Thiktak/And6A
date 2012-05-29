@@ -1,3 +1,8 @@
+rest:
+    resource: "@And6aTrombiBundle/Controller/RestController.php"
+    prefix: /rest
+    type: annotation
+
 And6aUserBundle:
     resource: "@And6aUserBundle/Resources/config/routing.yml"
     prefix:   /
